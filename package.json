@@ -1,0 +1,18 @@
+{
+  "name": "conector-fudo-mandys",
+  "version": "1.0.0",
+  "description": "Conector Fudo (solo lectura) para Claude",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.1",
+    "express": "^5.2.1",
+    "zod": "^4.6.5"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  }
+}
