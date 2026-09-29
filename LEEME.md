@@ -35,9 +35,20 @@ https://SU-DOMINIO/mcp/LA-CLAVE_CONECTOR
 
 Esa dirección es como una contraseña: no compartirla.
 
+## Direcciones para las herramientas (calculadora y gestor)
+
+- Calculadora de compras → `https://SU-DOMINIO/costos/LA-CLAVE_CONECTOR`
+- Gestor de precios → `https://SU-DOMINIO/productos/LA-CLAVE_CONECTOR`
+
+## Cómo actualizar el conector (versión 2)
+
+Reemplazar TODOS los archivos por los de este zip (hay dos nuevos: `control-precios.js` y `maestro.json`) y volver a desplegar. En Render: subir los cambios al repositorio de GitHub y se redespliega solo (o "Manual Deploy"). Las variables de entorno no cambian.
+
 ## Qué puede hacer Claude con esto
 
 - **resumen_ventas**: totales por día, tipo, origen (apps, tienda) y medio de pago.
 - **listar_ventas**: ventas una por una con su detalle.
 - **resumen_gastos**: gastos por categoría y proveedor.
+- **control_precios_congelados**: recalcula las listas del 0_MAESTRO con los costos de Fudo y avisa qué quedó atrasado.
+- **control_precios_local**: avisa qué productos de la carta quedaron por debajo del precio mínimo.
 - **consultar_fudo**: productos, ingredientes, costos, proveedores, clientes, descuentos.

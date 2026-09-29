@@ -1,0 +1,1104 @@
+{
+ "fecha_maestro": "2026-09-28",
+ "merma": 0.1,
+ "envase": [
+  "Bolsa",
+  "Etiqueta"
+ ],
+ "markup_vendedor": 0.2,
+ "markup_comercio": 0.25,
+ "insumos": {
+  "Carne molida": {
+   "unidad": "kg",
+   "precio": 7585,
+   "fudo_id": "106"
+  },
+  "Pollo entero": {
+   "unidad": "kg",
+   "precio": 4375
+  },
+  "Jamon": {
+   "unidad": "kg",
+   "precio": 6990
+  },
+  "Muzzarella": {
+   "unidad": "kg",
+   "precio": 9275,
+   "fudo_id": "188"
+  },
+  "Acelga": {
+   "unidad": "kg",
+   "precio": 1500
+  },
+  "Acelga (paquete)": {
+   "unidad": "paquete",
+   "precio": 300
+  },
+  "Cebolla": {
+   "unidad": "kg",
+   "precio": 1000,
+   "fudo_id": "120"
+  },
+  "Huevo": {
+   "unidad": "un",
+   "precio": 166.67,
+   "fudo_id": "73"
+  },
+  "Harina": {
+   "unidad": "kg",
+   "precio": 920,
+   "fudo_id": "84"
+  },
+  "Pan rallado": {
+   "unidad": "kg",
+   "precio": 3000,
+   "fudo_id": "102"
+  },
+  "Sal": {
+   "unidad": "kg",
+   "precio": 1000,
+   "fudo_id": "85"
+  },
+  "Comino": {
+   "unidad": "kg",
+   "precio": 1000,
+   "fudo_id": "153"
+  },
+  "Pimiento": {
+   "unidad": "kg",
+   "precio": 6000,
+   "fudo_id": "172"
+  },
+  "Condimento p/pizza": {
+   "unidad": "kg",
+   "precio": 4000,
+   "fudo_id": "115"
+  },
+  "Pimenton": {
+   "unidad": "kg",
+   "precio": 8000,
+   "fudo_id": "116"
+  },
+  "Oregano": {
+   "unidad": "kg",
+   "precio": 2600,
+   "fudo_id": "155"
+  },
+  "Provenzal": {
+   "unidad": "kg",
+   "precio": 4000,
+   "fudo_id": "117"
+  },
+  "Nuez moscada": {
+   "unidad": "kg",
+   "precio": 26000,
+   "fudo_id": "154"
+  },
+  "Chimichurri": {
+   "unidad": "kg",
+   "precio": 3500,
+   "fudo_id": "156"
+  },
+  "Aceite": {
+   "unidad": "L",
+   "precio": 3000,
+   "fudo_id": "173"
+  },
+  "Leche": {
+   "unidad": "L",
+   "precio": 1800,
+   "fudo_id": "176"
+  },
+  "Manteca": {
+   "unidad": "kg",
+   "precio": 5000,
+   "fudo_id": "167"
+  },
+  "Azucar": {
+   "unidad": "kg",
+   "precio": 1000,
+   "fudo_id": "71"
+  },
+  "Levadura": {
+   "unidad": "kg",
+   "precio": 8000,
+   "fudo_id": "162"
+  },
+  "Salsa de tomate": {
+   "unidad": "L",
+   "precio": 1334,
+   "fudo_id": "183"
+  },
+  "Zapallitos": {
+   "unidad": "kg",
+   "precio": 3000,
+   "fudo_id": "124"
+  },
+  "Fiambre de cerdo": {
+   "unidad": "kg",
+   "precio": 7050,
+   "fudo_id": "20"
+  },
+  "Tapa tarta 32 cm": {
+   "unidad": "un",
+   "precio": 750,
+   "fudo_id": "230"
+  },
+  "Tapa tartita 22 cm": {
+   "unidad": "un",
+   "precio": 208,
+   "fudo_id": "81"
+  },
+  "Agua": {
+   "unidad": "L",
+   "precio": 0
+  },
+  "Film": {
+   "unidad": "m",
+   "precio": 0
+  },
+  "Tapa de empanada": {
+   "unidad": "un",
+   "precio": 83.83,
+   "fudo_id": "79"
+  },
+  "Tapa de copetin": {
+   "unidad": "un",
+   "precio": 75,
+   "fudo_id": "276"
+  },
+  "Bolsa": {
+   "unidad": "un",
+   "precio": 55,
+   "fudo_id": "315"
+  },
+  "Etiqueta": {
+   "unidad": "un",
+   "precio": 30,
+   "fudo_id": "316"
+  }
+ },
+ "recetas": {
+  "Empanada de carne": [
+   [
+    "Carne molida",
+    5
+   ],
+   [
+    "Cebolla",
+    5
+   ],
+   [
+    "Sal",
+    0.1
+   ],
+   [
+    "Comino",
+    0.05
+   ],
+   [
+    "Pimiento",
+    0.05
+   ],
+   [
+    "Condimento p/pizza",
+    0.05
+   ],
+   [
+    "Pimenton",
+    0.05
+   ],
+   [
+    "Tapa de empanada",
+    228
+   ]
+  ],
+  "Empanada de jamon y queso": [
+   [
+    "Jamon",
+    1.5
+   ],
+   [
+    "Muzzarella",
+    1.5
+   ],
+   [
+    "Huevo",
+    3
+   ],
+   [
+    "Tapa de empanada",
+    126
+   ]
+  ],
+  "Empanada de pollo": [
+   [
+    "Pollo entero",
+    1.5
+   ],
+   [
+    "Cebolla",
+    1.5
+   ],
+   [
+    "Sal",
+    0.08
+   ],
+   [
+    "Pimiento",
+    0.15
+   ],
+   [
+    "Condimento p/pizza",
+    0.1
+   ],
+   [
+    "Pimenton",
+    0.1
+   ],
+   [
+    "Chimichurri",
+    0.2
+   ],
+   [
+    "Tapa de empanada",
+    87
+   ]
+  ],
+  "Empanada de acelga": [
+   [
+    "Acelga",
+    2
+   ],
+   [
+    "Muzzarella",
+    0.3
+   ],
+   [
+    "Nuez moscada",
+    0.005
+   ],
+   [
+    "Harina",
+    0.02
+   ],
+   [
+    "Condimento p/pizza",
+    0.05
+   ],
+   [
+    "Sal",
+    0.08
+   ],
+   [
+    "Provenzal",
+    0.05
+   ],
+   [
+    "Tapa de empanada",
+    62
+   ]
+  ],
+  "Empanada de cebolla y muzzarella": [
+   [
+    "Cebolla",
+    1
+   ],
+   [
+    "Muzzarella",
+    0.3
+   ],
+   [
+    "Huevo",
+    2
+   ],
+   [
+    "Harina",
+    0.02
+   ],
+   [
+    "Oregano",
+    0.05
+   ],
+   [
+    "Provenzal",
+    0.05
+   ],
+   [
+    "Tapa de empanada",
+    60
+   ]
+  ],
+  "Ravioles": [
+   [
+    "Acelga (paquete)",
+    10
+   ],
+   [
+    "Muzzarella",
+    0.22
+   ],
+   [
+    "Sal",
+    0.065
+   ],
+   [
+    "Nuez moscada",
+    0.001
+   ],
+   [
+    "Harina",
+    1
+   ],
+   [
+    "Huevo",
+    4
+   ],
+   [
+    "Aceite",
+    0.04
+   ]
+  ],
+  "Sorrentinos": [
+   [
+    "Acelga (paquete)",
+    10
+   ],
+   [
+    "Muzzarella",
+    0.22
+   ],
+   [
+    "Pollo entero",
+    0.5
+   ],
+   [
+    "Pan rallado",
+    0.1
+   ],
+   [
+    "Cebolla",
+    0.2
+   ],
+   [
+    "Sal",
+    0.065
+   ],
+   [
+    "Condimento p/pizza",
+    0.02
+   ],
+   [
+    "Nuez moscada",
+    0.001
+   ],
+   [
+    "Harina",
+    1
+   ],
+   [
+    "Huevo",
+    4
+   ],
+   [
+    "Aceite",
+    0.04
+   ]
+  ],
+  "Capeletis": [
+   [
+    "Jamon",
+    0.5
+   ],
+   [
+    "Muzzarella",
+    0.4
+   ],
+   [
+    "Tapa de copetin",
+    180
+   ]
+  ],
+  "Minilomo": [
+   [
+    "Harina",
+    2
+   ],
+   [
+    "Leche",
+    1
+   ],
+   [
+    "Manteca",
+    0.1
+   ],
+   [
+    "Sal",
+    0.08
+   ],
+   [
+    "Azucar",
+    0.08
+   ],
+   [
+    "Levadura",
+    0.125
+   ],
+   [
+    "Film",
+    0.4
+   ]
+  ],
+  "Pan de hamburguesa": [
+   [
+    "Harina",
+    2
+   ],
+   [
+    "Leche",
+    1
+   ],
+   [
+    "Manteca",
+    0.1
+   ],
+   [
+    "Sal",
+    0.08
+   ],
+   [
+    "Azucar",
+    0.08
+   ],
+   [
+    "Levadura",
+    0.125
+   ],
+   [
+    "Film",
+    0.4
+   ]
+  ],
+  "Tarta de acelga 32 cm": [
+   [
+    "Acelga (paquete)",
+    1.74
+   ],
+   [
+    "Cebolla",
+    0.0783
+   ],
+   [
+    "Nuez moscada",
+    0.00087
+   ],
+   [
+    "Condimento p/pizza",
+    0.0087
+   ],
+   [
+    "Huevo",
+    0.348
+   ],
+   [
+    "Sal",
+    0.0174
+   ],
+   [
+    "Tapa tarta 32 cm",
+    1
+   ]
+  ],
+  "Tarta de zapallito 32 cm": [
+   [
+    "Zapallitos",
+    0.20077
+   ],
+   [
+    "Cebolla",
+    0.16731
+   ],
+   [
+    "Provenzal",
+    0.00418
+   ],
+   [
+    "Condimento p/pizza",
+    0.00418
+   ],
+   [
+    "Huevo",
+    0.16731
+   ],
+   [
+    "Sal",
+    0.00837
+   ],
+   [
+    "Tapa tarta 32 cm",
+    1
+   ]
+  ],
+  "Tarta de pollo 32 cm": [
+   [
+    "Pollo entero",
+    0.21429
+   ],
+   [
+    "Cebolla",
+    0.21429
+   ],
+   [
+    "Aceite",
+    0.01071
+   ],
+   [
+    "Provenzal",
+    0.00536
+   ],
+   [
+    "Condimento p/pizza",
+    0.00536
+   ],
+   [
+    "Huevo",
+    0.21429
+   ],
+   [
+    "Muzzarella",
+    0.04286
+   ],
+   [
+    "Sal",
+    0.01071
+   ],
+   [
+    "Tapa tarta 32 cm",
+    1
+   ]
+  ],
+  "Tarta de jamon y queso 32 cm": [
+   [
+    "Fiambre de cerdo",
+    0.2
+   ],
+   [
+    "Muzzarella",
+    0.15
+   ],
+   [
+    "Huevo",
+    1
+   ],
+   [
+    "Tapa tarta 32 cm",
+    1
+   ]
+  ],
+  "Tartita de acelga 22 cm": [
+   [
+    "Acelga (paquete)",
+    1
+   ],
+   [
+    "Cebolla",
+    0.045
+   ],
+   [
+    "Nuez moscada",
+    0.0005
+   ],
+   [
+    "Condimento p/pizza",
+    0.005
+   ],
+   [
+    "Huevo",
+    0.2
+   ],
+   [
+    "Sal",
+    0.01
+   ],
+   [
+    "Tapa tartita 22 cm",
+    2
+   ]
+  ],
+  "Tartita de zapallito 22 cm": [
+   [
+    "Zapallitos",
+    0.11538
+   ],
+   [
+    "Cebolla",
+    0.09615
+   ],
+   [
+    "Provenzal",
+    0.002404
+   ],
+   [
+    "Condimento p/pizza",
+    0.002404
+   ],
+   [
+    "Huevo",
+    0.09615
+   ],
+   [
+    "Sal",
+    0.004808
+   ],
+   [
+    "Tapa tartita 22 cm",
+    2
+   ]
+  ],
+  "Tartita de pollo 22 cm": [
+   [
+    "Pollo entero",
+    0.12315
+   ],
+   [
+    "Cebolla",
+    0.12315
+   ],
+   [
+    "Aceite",
+    0.006158
+   ],
+   [
+    "Provenzal",
+    0.003079
+   ],
+   [
+    "Condimento p/pizza",
+    0.003079
+   ],
+   [
+    "Huevo",
+    0.12315
+   ],
+   [
+    "Muzzarella",
+    0.02463
+   ],
+   [
+    "Sal",
+    0.006158
+   ],
+   [
+    "Tapa tartita 22 cm",
+    2
+   ]
+  ],
+  "Tartita de jamon y queso 22 cm": [
+   [
+    "Fiambre de cerdo",
+    0.1
+   ],
+   [
+    "Muzzarella",
+    0.075
+   ],
+   [
+    "Huevo",
+    1
+   ],
+   [
+    "Tapa tartita 22 cm",
+    2
+   ]
+  ],
+  "Prepizza": [
+   [
+    "Harina",
+    7
+   ],
+   [
+    "Agua",
+    3.6
+   ],
+   [
+    "Aceite",
+    0.3
+   ],
+   [
+    "Levadura",
+    0.25
+   ],
+   [
+    "Sal",
+    0.12
+   ],
+   [
+    "Azucar",
+    0.12
+   ],
+   [
+    "Salsa de tomate",
+    1
+   ]
+  ]
+ },
+ "rinde": {
+  "Empanada de carne": 228,
+  "Empanada de jamon y queso": 126,
+  "Empanada de pollo": 87,
+  "Empanada de acelga": 62,
+  "Empanada de cebolla y muzzarella": 60,
+  "Ravioles": 88,
+  "Sorrentinos": 88,
+  "Capeletis": 180,
+  "Minilomo": 24,
+  "Pan de hamburguesa": 39,
+  "Prepizza": 31,
+  "Tarta de acelga 32 cm": 1,
+  "Tarta de zapallito 32 cm": 1,
+  "Tarta de pollo 32 cm": 1,
+  "Tarta de jamon y queso 32 cm": 1,
+  "Tartita de acelga 22 cm": 1,
+  "Tartita de zapallito 22 cm": 1,
+  "Tartita de pollo 22 cm": 1,
+  "Tartita de jamon y queso 22 cm": 1
+ },
+ "productos": [
+  {
+   "producto": "DOCENA SURTIDA (3 carne, 3 pollo, 3 acelga, 3 ceb/muzza)",
+   "presentacion": "Docena",
+   "componentes": [
+    [
+     "Empanada de carne",
+     3
+    ],
+    [
+     "Empanada de pollo",
+     3
+    ],
+    [
+     "Empanada de acelga",
+     3
+    ],
+    [
+     "Empanada de cebolla y muzzarella",
+     3
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 5100
+  },
+  {
+   "producto": "DOCENA SURTIDA (2 carne, 2 pollo, 1 acelga, 1 ceb/muzza)",
+   "presentacion": "Media docena",
+   "componentes": [
+    [
+     "Empanada de carne",
+     2
+    ],
+    [
+     "Empanada de pollo",
+     2
+    ],
+    [
+     "Empanada de acelga",
+     1
+    ],
+    [
+     "Empanada de cebolla y muzzarella",
+     1
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 2750
+  },
+  {
+   "producto": "Empanada de carne",
+   "presentacion": "Docena",
+   "componentes": [
+    [
+     "Empanada de carne",
+     12
+    ]
+   ],
+   "margen": 0.38,
+   "precio_lista": 6050
+  },
+  {
+   "producto": "Empanada de carne",
+   "presentacion": "Media docena",
+   "componentes": [
+    [
+     "Empanada de carne",
+     6
+    ]
+   ],
+   "margen": 0.39,
+   "precio_lista": 3150
+  },
+  {
+   "producto": "Empanada de jamon y queso",
+   "presentacion": "Docena",
+   "componentes": [
+    [
+     "Empanada de jamon y queso",
+     12
+    ]
+   ],
+   "margen": 0.47,
+   "precio_lista": 7200
+  },
+  {
+   "producto": "Empanada de jamon y queso",
+   "presentacion": "Media docena",
+   "componentes": [
+    [
+     "Empanada de jamon y queso",
+     6
+    ]
+   ],
+   "margen": 0.47,
+   "precio_lista": 3700
+  },
+  {
+   "producto": "Empanada de pollo",
+   "presentacion": "Docena",
+   "componentes": [
+    [
+     "Empanada de pollo",
+     12
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 4950
+  },
+  {
+   "producto": "Empanada de pollo",
+   "presentacion": "Media docena",
+   "componentes": [
+    [
+     "Empanada de pollo",
+     6
+    ]
+   ],
+   "margen": 0.46,
+   "precio_lista": 2600
+  },
+  {
+   "producto": "Empanada de acelga",
+   "presentacion": "Docena",
+   "componentes": [
+    [
+     "Empanada de acelga",
+     12
+    ]
+   ],
+   "margen": 0.47,
+   "precio_lista": 4850
+  },
+  {
+   "producto": "Empanada de acelga",
+   "presentacion": "Media docena",
+   "componentes": [
+    [
+     "Empanada de acelga",
+     6
+    ]
+   ],
+   "margen": 0.47,
+   "precio_lista": 2500
+  },
+  {
+   "producto": "Empanada de cebolla y muzzarella",
+   "presentacion": "Docena",
+   "componentes": [
+    [
+     "Empanada de cebolla y muzzarella",
+     12
+    ]
+   ],
+   "margen": 0.47,
+   "precio_lista": 4150
+  },
+  {
+   "producto": "Empanada de cebolla y muzzarella",
+   "presentacion": "Media docena",
+   "componentes": [
+    [
+     "Empanada de cebolla y muzzarella",
+     6
+    ]
+   ],
+   "margen": 0.48,
+   "precio_lista": 2200
+  },
+  {
+   "producto": "Ravioles de acelga y muzzarella",
+   "presentacion": "Paquete x 16 un.",
+   "componentes": [
+    [
+     "Ravioles",
+     16
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 2700
+  },
+  {
+   "producto": "Sorrentinos de pollo y verdura",
+   "presentacion": "Paquete x 16 un.",
+   "componentes": [
+    [
+     "Sorrentinos",
+     16
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 3550
+  },
+  {
+   "producto": "Capeletis de jamon y queso",
+   "presentacion": "Paquete x 14 un.",
+   "componentes": [
+    [
+     "Capeletis",
+     14
+    ]
+   ],
+   "margen": 0.54,
+   "precio_lista": 4000
+  },
+  {
+   "producto": "Minilomo 22 cm - 140 g c/u",
+   "presentacion": "Paquete x 4 un.",
+   "componentes": [
+    [
+     "Minilomo",
+     4
+    ]
+   ],
+   "margen": 0.46,
+   "precio_lista": 1950
+  },
+  {
+   "producto": "Pan de hamburguesa 85 g c/u",
+   "presentacion": "Paquete x 4 un.",
+   "componentes": [
+    [
+     "Pan de hamburguesa",
+     4
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 1250
+  },
+  {
+   "producto": "Prepizza 28 cm - 330 g c/u - 8 porciones",
+   "presentacion": "Paquete x 3 un.",
+   "componentes": [
+    [
+     "Prepizza",
+     3
+    ]
+   ],
+   "margen": 0.46,
+   "precio_lista": 2300
+  },
+  {
+   "producto": "Tarta de acelga 32 cm",
+   "presentacion": "Unidad",
+   "componentes": [
+    [
+     "Tarta de acelga 32 cm",
+     1
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 3150
+  },
+  {
+   "producto": "Tarta de zapallito 32 cm",
+   "presentacion": "Unidad",
+   "componentes": [
+    [
+     "Tarta de zapallito 32 cm",
+     1
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 3350
+  },
+  {
+   "producto": "Tarta de pollo 32 cm",
+   "presentacion": "Unidad",
+   "componentes": [
+    [
+     "Tarta de pollo 32 cm",
+     1
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 5000
+  },
+  {
+   "producto": "Tarta de jamon y queso 32 cm",
+   "presentacion": "Unidad",
+   "componentes": [
+    [
+     "Tarta de jamon y queso 32 cm",
+     1
+    ]
+   ],
+   "margen": 0.35,
+   "precio_lista": 6450
+  },
+  {
+   "producto": "Tartita de acelga 22 cm",
+   "presentacion": "Unidad",
+   "componentes": [
+    [
+     "Tartita de acelga 22 cm",
+     1
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 1850
+  },
+  {
+   "producto": "Tartita de zapallito 22 cm",
+   "presentacion": "Unidad",
+   "componentes": [
+    [
+     "Tartita de zapallito 22 cm",
+     1
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 2000
+  },
+  {
+   "producto": "Tartita de pollo 22 cm",
+   "presentacion": "Unidad",
+   "componentes": [
+    [
+     "Tartita de pollo 22 cm",
+     1
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 2950
+  },
+  {
+   "producto": "Tartita de jamon y queso 22 cm",
+   "presentacion": "Unidad",
+   "componentes": [
+    [
+     "Tartita de jamon y queso 22 cm",
+     1
+    ]
+   ],
+   "margen": 0.45,
+   "precio_lista": 4150
+  }
+ ]
+}

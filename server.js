@@ -11,6 +11,7 @@ import express from "express";
 import { z } from "zod";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { controlPrecios } from "./control-precios.js";
 
 const { FUDO_API_KEY, FUDO_API_SECRET, CLAVE_CONECTOR, PORT = 3000 } = process.env;
 if (!FUDO_API_KEY || !FUDO_API_SECRET || !CLAVE_CONECTOR) {
@@ -84,6 +85,30 @@ const rel = (obj, nombre) => obj.relationships?.[nombre]?.data;
 function sumar(mapa, clave, monto) {
   const c = mapa[clave] || (mapa[clave] = { cantidad: 0, total: 0 });
   c.cantidad++; c.total = Math.round((c.total + monto) * 100) / 100;
+}
+
+// Costos actuales de todos los ingredientes: Map id -> costo, y lista {name, cost}
+async function costosIngredientes() {
+  const { datos } = await fudoTodo("/ingredients", { "fields[ingredient]": "name,cost" });
+  const porId = new Map(), lista = [];
+  for (const x of datos) {
+    const c = Number(x.attributes?.cost);
+    if (c > 0) { porId.set(String(x.id), c); lista.push({ name: x.attributes.name, cost: c }); }
+  }
+  return { porId, lista };
+}
+
+// Productos con costo, precio, categoría y si están activos
+async function productosFudo() {
+  const { datos, incluidos } = await fudoTodo("/products", { include: "productCategory" });
+  const idx = indexar(incluidos);
+  return datos.map((p) => {
+    const a = p.attributes || {}, c = rel(p, "productCategory");
+    return {
+      Producto: a.name, Categoria: c ? idx.get(`${c.type}:${c.id}`)?.attributes?.name || "" : "",
+      Costo: a.cost ?? "", Precio: a.price ?? "", Activo: a.active ? "Si" : "No",
+    };
+  });
 }
 
 const texto = (obj) => ({ content: [{ type: "text", text: JSON.stringify(obj, null, 2) }] });
@@ -185,6 +210,37 @@ function crearServidor() {
     async ({ recurso, id, parametros = {} }) => texto(await fudoGet(`/${recurso}${id ? "/" + encodeURIComponent(id) : ""}`, parametros))
   );
 
+  s.tool(
+    "control_precios_congelados",
+    "Control de precios de la línea de CONGELADOS (planilla 0_MAESTRO: listas de vendedor y comercio). Recalcula costos con los costos actuales de los ingredientes en Fudo y avisa qué insumos cambiaron y qué productos quedaron con el precio de lista atrasado (más de 5% por debajo del sugerido).",
+    {},
+    async () => texto(controlPrecios((await costosIngredientes()).porId))
+  );
+
+  s.tool(
+    "control_precios_local",
+    "Control de precios de la carta del LOCAL según Fudo (misma regla que el gestor de precios): marca los productos activos cuyo precio quedó por debajo del mínimo = costo / (1 - margen). Margen 60% elaboración propia y 45% bebidas/tercerizados. También da el precio para cada app (PedidosYa ×1,50, Rappi ×1,30, Uber Eats ×1,20). Ojo: en Fudo algunos combos de empanadas tienen el costo inflado.",
+    {
+      margen_propio: z.number().optional().describe("Por defecto 0.60"),
+      margen_tercerizado: z.number().optional().describe("Por defecto 0.45"),
+    },
+    async ({ margen_propio = 0.6, margen_tercerizado = 0.45 }) => {
+      const TERCER = /(bebida|tequeñ|postre|helado|chocolate|coca|sprite|fanta|agua|cerveza|vino|aquarius|pepsi|brio|h2o|levite|schweppes|quilmes|andes|stella|heineken|imperial|lata|gaseosa|soda|raba)/i;
+      const filas = (await productosFudo()).filter((p) => p.Activo === "Si" && Number(p.Costo) > 0 && Number(p.Precio) > 0 && !/eliminad/i.test(p.Categoria));
+      const atrasados = [];
+      for (const p of filas) {
+        const m = TERCER.test(p.Producto) || TERCER.test(p.Categoria) ? margen_tercerizado : margen_propio;
+        const minimo = Math.round(Number(p.Costo) / (1 - m));
+        if (Number(p.Precio) < minimo) atrasados.push({
+          producto: p.Producto, categoria: p.Categoria, costo: Number(p.Costo), precio_actual: Number(p.Precio), precio_minimo: minimo,
+          falta: `${(((minimo - p.Precio) / p.Precio) * 100).toFixed(1)}%`,
+          pedidosya: Math.round(minimo * 1.5), rappi: Math.round(minimo * 1.3), uber: Math.round(minimo * 1.2),
+        });
+      }
+      return texto({ productos_revisados: filas.length, cantidad_atrasados: atrasados.length, atrasados: atrasados.sort((a, b) => parseFloat(b.falta) - parseFloat(a.falta)) });
+    }
+  );
+
   return s;
 }
 
@@ -205,6 +261,21 @@ app.all(`/mcp/${CLAVE_CONECTOR}`, async (req, res) => {
     console.error(e);
     if (!res.headersSent) res.status(500).json({ error: "Error interno" });
   }
+});
+
+// ---------- Datos para las herramientas HTML (calculadora y gestor) ----------
+const cors = (res) => { res.set("Access-Control-Allow-Origin", "*"); res.set("Cache-Control", "no-store"); };
+
+app.get(`/costos/${CLAVE_CONECTOR}`, async (_req, res) => {
+  cors(res);
+  try { res.json({ ok: true, ingredientes: (await costosIngredientes()).lista }); }
+  catch (e) { res.status(502).json({ ok: false, error: e.message }); }
+});
+
+app.get(`/productos/${CLAVE_CONECTOR}`, async (_req, res) => {
+  cors(res);
+  try { res.json({ ok: true, productos: await productosFudo() }); }
+  catch (e) { res.status(502).json({ ok: false, error: e.message }); }
 });
 
 app.listen(PORT, () => console.log(`Conector Fudo escuchando en el puerto ${PORT}`));
