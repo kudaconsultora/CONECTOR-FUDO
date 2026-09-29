@@ -100,13 +100,16 @@ async function costosIngredientes() {
 
 // Productos con costo, precio, categoría y si están activos
 async function productosFudo() {
-  const { datos, incluidos } = await fudoTodo("/products", { include: "productCategory" });
+  const { datos, incluidos } = await fudoTodo("/products", {
+    include: "productCategory",
+    "fields[product]": "name,active,cost,componentsCost,price,productCategory",
+  });
   const idx = indexar(incluidos);
   return datos.map((p) => {
     const a = p.attributes || {}, c = rel(p, "productCategory");
     return {
       Producto: a.name, Categoria: c ? idx.get(`${c.type}:${c.id}`)?.attributes?.name || "" : "",
-      Costo: a.cost ?? "", Precio: a.price ?? "", Activo: a.active ? "Si" : "No",
+      Costo: (a.cost > 0 ? a.cost : a.componentsCost > 0 ? Math.round(a.componentsCost * 100) / 100 : ""), Precio: a.price ?? "", Activo: a.active ? "Si" : "No",
     };
   });
 }
