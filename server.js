@@ -101,8 +101,9 @@ async function costosIngredientes() {
 // Productos con costo, precio, categoría y si están activos
 async function productosFudo() {
   const { datos, incluidos } = await fudoTodo("/products", {
+    // Sin "fields[product]": Fudo ya no acepta "productCategory" en esa lista
+    // y, si se limitan los campos, deja de mandar la categoría.
     include: "productCategory",
-    "fields[product]": "name,active,cost,componentsCost,price,productCategory",
   });
   const idx = indexar(incluidos);
   return datos.map((p) => {
