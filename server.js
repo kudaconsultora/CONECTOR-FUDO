@@ -184,12 +184,14 @@ function crearServidor() {
         "filter[date]": `and(gte.${desde},lte.${hasta})`,
         "filter[canceled]": "neq.true",
         include: "expenseCategory,provider,paymentMethod",
+        // Fudo no manda los datos del gasto si no se piden explícitamente
+        "fields[expense]": "amount,date,description,status,canceled,dueDate,paymentDate,receiptNumber,expenseCategory,provider,paymentMethod",
       });
       const idx = indexar(incluidos);
       const nom = (g, n) => { const x = rel(g, n); return x ? idx.get(`${x.type}:${x.id}`)?.attributes?.name : null; };
       const r = { desde, hasta, cantidad: 0, total: 0, por_categoria: {}, por_proveedor: {}, detalle: [] };
         const primero = (obj, claves) => { for (const k of claves) if (obj[k] !== undefined && obj[k] !== null) return obj[k]; return undefined; };
-      if (datos[0]) r.muestra_cruda = { attributes: datos[0].attributes, claves: Object.keys(datos[0]) };
+      if (datos[0]) r.muestra_cruda = { attributes: datos[0].attributes, claves: Object.keys(datos[0]), vinculos: Object.keys(datos[0].relationships || {}) };
       for (const g of datos) {
         const a = g.attributes || {};
         const monto = Number(primero(a, ["amount", "total", "value", "price", "importe"])) || 0;
