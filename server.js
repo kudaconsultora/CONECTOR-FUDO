@@ -189,14 +189,19 @@ function crearServidor() {
       const nom = (g, n) => { const x = rel(g, n); return x ? idx.get(`${x.type}:${x.id}`)?.attributes?.name : null; };
       const r = { desde, hasta, cantidad: 0, total: 0, por_categoria: {}, por_proveedor: {}, detalle: [] };
       for (const g of datos) {
+        const primero = (obj, claves) => { for (const k of claves) if (obj[k] !== undefined && obj[k] !== null) return obj[k]; return undefined; };
+      if (datos[0]) r.muestra_cruda = { attributes: datos[0].attributes, claves: Object.keys(datos[0]) };
+      for (const g of datos) {
         const a = g.attributes || {};
-        const monto = Number(a.amount) || 0;
+        const monto = Number(primero(a, ["amount", "total", "value", "price", "importe"])) || 0;
+        const fechaG = primero(a, ["date", "expenseDate", "paymentDate", "createdAt"]);
+        const estado = primero(a, ["status", "state", "expenseState"]);
         const cat = nom(g, "expenseCategory") || "sin categoría";
         const prov = nom(g, "provider") || "sin proveedor";
         r.cantidad++; r.total = Math.round((r.total + monto) * 100) / 100;
         sumar(r.por_categoria, cat, monto);
         sumar(r.por_proveedor, prov, monto);
-        r.detalle.push({ fecha: a.date, monto, categoria: cat, proveedor: prov, descripcion: a.description || "", estado: a.status, medio_pago: nom(g, "paymentMethod") });
+        r.detalle.push({ fecha: fechaG, monto, categoria: cat, proveedor: prov, descripcion: a.description || a.comment || "", estado, medio_pago: nom(g, "paymentMethod") });
       }
       return texto(r);
     }
