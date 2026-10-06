@@ -188,7 +188,6 @@ function crearServidor() {
       const idx = indexar(incluidos);
       const nom = (g, n) => { const x = rel(g, n); return x ? idx.get(`${x.type}:${x.id}`)?.attributes?.name : null; };
       const r = { desde, hasta, cantidad: 0, total: 0, por_categoria: {}, por_proveedor: {}, detalle: [] };
-      for (const g of datos) {
         const primero = (obj, claves) => { for (const k of claves) if (obj[k] !== undefined && obj[k] !== null) return obj[k]; return undefined; };
       if (datos[0]) r.muestra_cruda = { attributes: datos[0].attributes, claves: Object.keys(datos[0]) };
       for (const g of datos) {
