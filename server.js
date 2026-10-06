@@ -202,6 +202,79 @@ function crearServidor() {
     }
   );
 
+  s.tool(
+    "clientes_que_dejaron_de_pedir",
+    "Compara dos períodos y lista los clientes habituales del período base que NO pidieron en el período actual (ventas CERRADAS, hora Argentina). Devuelve nombre, teléfono, pedidos y gasto en el período base y fecha del último pedido, ordenados por lo que gastaban. Solo cuenta clientes identificados (registrados en Fudo o con nombre y teléfono); las ventas sin cliente se informan aparte.",
+    {
+      base_desde: fecha, base_hasta: fecha,
+      actual_desde: fecha, actual_hasta: fecha,
+      minimo_pedidos: z.number().int().min(1).optional().describe("Pedidos mínimos en el período base para considerarlo habitual. Por defecto 3"),
+      limite: z.number().int().min(1).max(300).optional().describe("Máximo de clientes en la lista. Por defecto 100"),
+    },
+    async ({ base_desde, base_hasta, actual_desde, actual_hasta, minimo_pedidos = 3, limite = 100 }) => {
+      const traer = (d, h) => fudoTodo("/sales", {
+        "filter[createdAt]": rangoUTC(d, h),
+        "filter[saleState]": "in.(CLOSED)",
+        include: "customer",
+      });
+      const [base, actual] = await Promise.all([traer(base_desde, base_hasta), traer(actual_desde, actual_hasta)]);
+
+      // Identifica al cliente de una venta: registrado (id de Fudo) o anónimo con nombre + teléfono
+      const tel = (t) => (t && /\d{6,}/.test(t) ? t : "");
+      const quien = (v, idx) => {
+        const c = rel(v, "customer");
+        if (c) {
+          const a = idx.get(`${c.type}:${c.id}`)?.attributes || {};
+          return { clave: `c:${c.id}`, nombre: a.name || "", telefono: tel(a.phone) };
+        }
+        const an = v.attributes?.anonymousCustomer;
+        const t = tel(an?.phone), n = (an?.name || "").trim();
+        if (t && n) return { clave: `a:${t}`, nombre: n, telefono: t };
+        return null;
+      };
+
+      const idxBase = indexar(base.incluidos), idxActual = indexar(actual.incluidos);
+      const clientes = new Map();
+      let sinCliente = 0;
+      for (const v of base.datos) {
+        const q = quien(v, idxBase);
+        if (!q) { sinCliente++; continue; }
+        const a = v.attributes || {};
+        const c = clientes.get(q.clave) || { nombre: q.nombre, telefono: q.telefono, pedidos: 0, gasto: 0, ultimo_pedido: "", tipos: {} };
+        c.pedidos++; c.gasto += Number(a.total) || 0;
+        const dia = diaAR(a.createdAt);
+        if (dia > c.ultimo_pedido) c.ultimo_pedido = dia;
+        c.tipos[a.saleType || "sin dato"] = (c.tipos[a.saleType || "sin dato"] || 0) + 1;
+        clientes.set(q.clave, c);
+      }
+
+      const pidieronAhora = new Set();
+      for (const v of actual.datos) { const q = quien(v, idxActual); if (q) pidieronAhora.add(q.clave); }
+
+      const TIPO = { DELIVERY: "delivery", TAKEAWAY: "retira", "EAT-IN": "en el local" };
+      const habituales = [...clientes.entries()].filter(([, c]) => c.pedidos >= minimo_pedidos);
+      const seFueron = habituales
+        .filter(([k]) => !pidieronAhora.has(k))
+        .map(([, c]) => ({
+          nombre: c.nombre, telefono: c.telefono, pedidos_base: c.pedidos, gasto_base: Math.round(c.gasto),
+          ultimo_pedido: c.ultimo_pedido,
+          suele_pedir: TIPO[Object.entries(c.tipos).sort((a, b) => b[1] - a[1])[0][0]] || "sin dato",
+        }))
+        .sort((a, b) => b.gasto_base - a.gasto_base);
+
+      return texto({
+        periodo_base: `${base_desde} a ${base_hasta}`, periodo_actual: `${actual_desde} a ${actual_hasta}`,
+        minimo_pedidos,
+        ventas_base_sin_cliente_identificado: sinCliente,
+        clientes_habituales_base: habituales.length,
+        siguieron_pidiendo: habituales.length - seFueron.length,
+        dejaron_de_pedir: seFueron.length,
+        gasto_base_de_los_que_dejaron: seFueron.reduce((t, c) => t + c.gasto_base, 0),
+        lista: seFueron.slice(0, limite),
+      });
+    }
+  );
+
   const RECURSOS = ["products", "product-categories", "ingredients", "expense-categories", "payment-methods", "providers", "customers", "discounts", "items", "payments", "users"];
   s.tool(
     "consultar_fudo",
